@@ -44,7 +44,7 @@ fun <S : State, E : Effect, V : BaseViewModel<*, S, E>> StateEffectScaffold(
     }
 
     val uiState = viewModel.state.collectAsStateWithLifecycle(
-        initialValue = viewModel.initialState(),
+        initialValue = viewModel.replayState,
         lifecycle = LocalLifecycleOwner.current,
         minActiveState = minActiveState,
         context = context

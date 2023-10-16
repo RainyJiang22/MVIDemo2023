@@ -7,6 +7,7 @@ import com.example.mvidemo.base.State
  * @date 2023/10/16
  */
 sealed class ExampleState : State {
+    object onLoginHub: ExampleState()
     object Loading: ExampleState()
-    object Content: ExampleState()
+    data class Error(val ex: Throwable) : ExampleState()
 }

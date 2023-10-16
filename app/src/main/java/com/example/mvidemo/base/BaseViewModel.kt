@@ -7,8 +7,11 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -25,7 +28,7 @@ abstract class BaseViewModel<A : Action, S : State, E : Effect> : ViewModel() {
         viewModelScope.launch {
             _action.consumeAsFlow().collect {
                 /*replayState：很多时候我们需要通过上个state的数据来处理这次数据，所以我们要获取当前状态传递*/
-                onAction(it, initialState())
+                onAction(it, replayState)
             }
         }
     }
@@ -42,14 +45,11 @@ abstract class BaseViewModel<A : Action, S : State, E : Effect> : ViewModel() {
     //state默认值
     abstract fun initialState(): S
 
-    private val _state by lazy {
-        MutableSharedFlow<S>(
-            replay = 1,
-            onBufferOverflow = BufferOverflow.DROP_OLDEST
-        )
-    }
+    private val _state by lazy { MutableStateFlow(value = initialState()) }
 
-    val state: Flow<S> by lazy { _state.distinctUntilChanged() }
+    val state: StateFlow<S> by lazy { _state.asStateFlow() }
+
+    val replayState = state.replayCache.firstOrNull()
 
     private val _effect = MutableSharedFlow<E>()
 
