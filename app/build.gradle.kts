@@ -66,4 +66,21 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // lifecycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+
+    //glide
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    //retrofit moshi
+    implementation("com.squareup.retrofit2:converter-moshi:2.6.2")
+    //moshi used KotlinJsonAdapterFactory
+    implementation("com.squareup.moshi:moshi-kotlin:1.9.3")
+
+    //Coroutine
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 }
