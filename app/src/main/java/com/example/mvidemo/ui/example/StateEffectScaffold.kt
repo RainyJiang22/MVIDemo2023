@@ -10,6 +10,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.mvidemo.base.BaseViewModel
 import com.example.mvidemo.base.Effect
 import com.example.mvidemo.base.State
+import com.example.mvidemo.base.collectAsStateWithLifecycle
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -41,4 +42,12 @@ fun <S : State, E : Effect, V : BaseViewModel<*, S, E>> StateEffectScaffold(
             }
         }
     }
+
+    val uiState = viewModel.state.collectAsStateWithLifecycle(
+        initialValue = viewModel.initialState(),
+        lifecycle = LocalLifecycleOwner.current,
+        minActiveState = minActiveState,
+        context = context
+    )
+    (uiState.value ?: initialState)?.let { content(viewModel, it) }
 }

@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * @author jiangshiyu
@@ -20,7 +22,7 @@ import kotlinx.coroutines.launch
 
 fun <T> Flow<T>.flowWithLifecycle(
     lifecycle: Lifecycle,
-    minActiveState: Lifecycle.State = Lifecycle.State.STARTED
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
 ): Flow<T> = callbackFlow {
     lifecycle.repeatOnLifecycle(minActiveState) {
         this@flowWithLifecycle.collect {
@@ -38,3 +40,11 @@ fun <T> Flow<T>.observeWithLifecycle(
 ): Job = fragment.viewLifecycleOwner.lifecycleScope.launch {
     flowWithLifecycle(fragment.viewLifecycleOwner.lifecycle, minActiveState).collect(collector)
 }
+
+@Composable
+fun <T> Flow<T>.collectAsStateWithLifecycle(
+    initialValue: T,
+    lifecycle: LifecycleOwner = LocalLifecycleOwner.current,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    context: CoroutineContext = EmptyCoroutineContext,
+): State<T> = collectAsStateWithLifecycle(initialValue = initialValue)
