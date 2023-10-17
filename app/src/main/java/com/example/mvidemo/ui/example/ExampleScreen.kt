@@ -11,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 /**
@@ -18,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
  * @date 2023/10/16
  */
 
+@Preview
 @Composable
 fun ExampleScreen() {
     val scaffoldState = rememberScaffoldState()
@@ -43,6 +45,7 @@ fun ExampleScreen() {
                     }) {
                         Text(text = "login")
                     }
+
                     else -> {
 
                     }

@@ -6,11 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.mvidemo.base.BaseViewModel
 import com.example.mvidemo.base.Effect
 import com.example.mvidemo.base.State
-import com.example.mvidemo.base.collectAsStateWithLifecycle
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -45,7 +45,7 @@ fun <S : State, E : Effect, V : BaseViewModel<*, S, E>> StateEffectScaffold(
 
     val uiState = viewModel.state.collectAsStateWithLifecycle(
         initialValue = viewModel.replayState,
-        lifecycle = LocalLifecycleOwner.current,
+        lifecycle = lifecycle,
         minActiveState = minActiveState,
         context = context
     )

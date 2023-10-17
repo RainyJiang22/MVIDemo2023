@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.onStart
 class ExampleViewModel : BaseViewModel<ExampleAction, ExampleState, ExampleEffects>() {
 
 
-    private val repo = ExampleRepository
     override fun onAction(action: ExampleAction, currentState: ExampleState?) {
         when (action) {
             ExampleAction.OnBtnClick -> {
@@ -23,11 +22,11 @@ class ExampleViewModel : BaseViewModel<ExampleAction, ExampleState, ExampleEffec
         }
     }
 
-    override fun initialState(): ExampleState = ExampleState.Loading
+    override fun initialState(): ExampleState = ExampleState.onLoginHub
 
 
     private fun login() {
-        repo.fetchLogin()
+        ExampleRepository.fetchLogin()
             .onStart {
                 emitState(ExampleState.Loading)
             }.catch {

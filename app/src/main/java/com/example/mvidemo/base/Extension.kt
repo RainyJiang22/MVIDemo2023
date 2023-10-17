@@ -40,11 +40,3 @@ fun <T> Flow<T>.observeWithLifecycle(
 ): Job = fragment.viewLifecycleOwner.lifecycleScope.launch {
     flowWithLifecycle(fragment.viewLifecycleOwner.lifecycle, minActiveState).collect(collector)
 }
-
-@Composable
-fun <T> Flow<T>.collectAsStateWithLifecycle(
-    initialValue: T,
-    lifecycle: LifecycleOwner = LocalLifecycleOwner.current,
-    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
-    context: CoroutineContext = EmptyCoroutineContext,
-): State<T> = collectAsStateWithLifecycle(initialValue = initialValue)
