@@ -1,4 +1,4 @@
-package com.example.mvidemo.ui.example
+package com.example.mvidemo.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,9 +8,6 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.mvidemo.base.BaseViewModel
-import com.example.mvidemo.base.Effect
-import com.example.mvidemo.base.State
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext

@@ -8,11 +8,7 @@ package com.example.mvidemo.base
 
 //用户的交互事件
 interface Action
-
-
 //ui响应的状态
 interface State
-
-
 //响应的事件
 interface Effect
