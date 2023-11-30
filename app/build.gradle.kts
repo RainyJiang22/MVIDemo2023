@@ -86,4 +86,9 @@ dependencies {
     //Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+
+
+    val latestVersion = "1.4.1"
+    debugImplementation("io.github.leavesczy:monitor:${latestVersion}")
+    releaseImplementation("io.github.leavesczy:monitor-no-op:${latestVersion}")
 }

@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MVIDemo2023"
 include(":app")
+include(":volcengine")
