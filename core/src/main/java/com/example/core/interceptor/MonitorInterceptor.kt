@@ -3,6 +3,8 @@ package com.example.core.interceptor
 import com.example.core.db.Monitor
 import com.example.core.db.MonitorDataBase
 import com.example.core.db.MonitorPair
+import com.example.core.ui.MonitorNotificationHandler
+import com.example.core.util.ContextProvider
 import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -16,11 +18,14 @@ import okio.GzipSource
  * @author jiangshiyu
  * @date 2023/12/4
  */
-class MonitorInterceptor : Interceptor {
+open class MonitorInterceptor : Interceptor {
+
+    @Volatile
+    private var notificationHandleInitialized = false
+
     override fun intercept(chain: Interceptor.Chain): Response {
-
+        initNotificationHandlerIfNeed()
         val request = chain.request()
-
         var monitor = buildMonitor(request)
         monitor = insert(monitor = monitor)
         val response = try {
@@ -35,6 +40,17 @@ class MonitorInterceptor : Interceptor {
         )
         update(monitor = monitor)
         return chain.proceed(chain.request())
+    }
+
+    private fun initNotificationHandlerIfNeed() {
+        if (!notificationHandleInitialized) {
+            synchronized(this) {
+                if (!notificationHandleInitialized) {
+                    notificationHandleInitialized = true
+                    MonitorNotificationHandler.init(context = ContextProvider.context)
+                }
+            }
+        }
     }
 
 

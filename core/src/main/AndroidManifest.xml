@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
+        <provider
+            android:name=".util.MonitorFileProvider"
+            android:authorities="${applicationId}.monitor.file.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/monitor_file_provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".ui.MonitorActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}.monitor"
+            android:theme="@style/Theme.Monitor" />
+
+    </application>
+
 </manifest>

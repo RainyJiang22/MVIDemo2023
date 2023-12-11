@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mvidemo.ui.example.ExampleScreen
 import com.example.mvidemo.ui.theme.MVIDemo2023Theme
+import github.leavesczy.monitor.MonitorInterceptor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
