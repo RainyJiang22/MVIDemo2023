@@ -11,8 +11,8 @@ android {
         targetSdkVersion 33
 
 
-        versionCode 1005
-        versionName "1.0.5"
+        versionCode 1006
+        versionName "1.0.6"
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -20,10 +20,10 @@ android {
 
     //自定义aar名称
     android.libraryVariants.configureEach { variant ->
-            variant.outputs.all {
-                def fileName = "volcengine_visual" + "_" + defaultConfig.versionName +   ".aar"
-                outputFileName = fileName
-            }
+        variant.outputs.all {
+            def fileName = "volcengine_visual" + "_" + defaultConfig.versionName + '_' + new Date().format('yyyy_MM_dd_HH_mm_ss') + "_" + ".aar"
+            outputFileName = fileName
+        }
     }
 
 

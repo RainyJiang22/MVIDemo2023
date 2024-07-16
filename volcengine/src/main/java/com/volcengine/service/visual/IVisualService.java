@@ -2,9 +2,11 @@ package com.volcengine.service.visual;
 
 import com.volcengine.model.request.VisualAllAgeGenerationRequest;
 import com.volcengine.model.request.VisualHairStyleRequest;
+import com.volcengine.model.request.VisualHumanSegmentRequest;
 import com.volcengine.model.request.VisualJPCartoonRequest;
 import com.volcengine.model.response.VisualAllAgeGenerationResponse;
 import com.volcengine.model.response.VisualHairStyleResponse;
+import com.volcengine.model.response.VisualHumanSegmentResponse;
 import com.volcengine.model.response.VisualJPCartoonResponse;
 import com.volcengine.service.IBaseService;
 
@@ -41,5 +43,12 @@ public interface IVisualService extends IBaseService {
      */
     VisualHairStyleResponse hairStyle(VisualHairStyleRequest request) throws Exception;
 
+
+    /**
+     * 人像抠图
+     * @return
+     * @throws Exception
+     */
+    VisualHumanSegmentResponse humanSegment(VisualHumanSegmentRequest request) throws Exception;
 
 }

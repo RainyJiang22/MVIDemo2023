@@ -97,6 +97,21 @@ public class VisualConfig {
                     }
             ));
 
+            put(Const.HumanSegment, new ApiInfo(
+                    new HashMap<String,Object>() {
+                        {
+                            put(Const.Method,"POST");
+                            put(Const.Path,"/");
+                            put(Const.Query,new ArrayList<NameValuePair>(){
+                                {
+                                    add(new NameValuePair("Action", Const.HumanSegment));
+                                    add(new NameValuePair("Version", "20220-08-26"));
+                                }
+                            });
+                        }
+                    }
+            ));
+
         }
     };
 }
