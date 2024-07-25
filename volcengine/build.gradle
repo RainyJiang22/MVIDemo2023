@@ -21,7 +21,7 @@ android {
     //自定义aar名称
     android.libraryVariants.configureEach { variant ->
         variant.outputs.all {
-            def fileName = "volcengine_visual" + "_" + defaultConfig.versionName + '_' + new Date().format('yyyy_MM_dd_HH_mm_ss')  + ".aar"
+            def fileName = "volcengine_visual" + "_" + defaultConfig.versionName  + ".aar"
             outputFileName = fileName
         }
     }

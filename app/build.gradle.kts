@@ -51,6 +51,7 @@ android {
 
 dependencies {
 
+    implementation(project(":bfslauncher"))
     implementation(fileTree("libs\\core-release.aar"))
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
