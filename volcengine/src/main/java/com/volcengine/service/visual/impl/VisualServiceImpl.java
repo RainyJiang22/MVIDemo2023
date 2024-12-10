@@ -11,11 +11,13 @@ import com.volcengine.model.ServiceInfo;
 import com.volcengine.model.request.VisualAllAgeGenerationRequest;
 import com.volcengine.model.request.VisualHairStyleRequest;
 import com.volcengine.model.request.VisualHumanSegmentRequest;
+import com.volcengine.model.request.VisualImageStylizationRequest;
 import com.volcengine.model.request.VisualJPCartoonRequest;
 import com.volcengine.model.response.RawResponse;
 import com.volcengine.model.response.VisualAllAgeGenerationResponse;
 import com.volcengine.model.response.VisualHairStyleResponse;
 import com.volcengine.model.response.VisualHumanSegmentResponse;
+import com.volcengine.model.response.VisualImageStylizationResponse;
 import com.volcengine.model.response.VisualJPCartoonResponse;
 import com.volcengine.service.BaseServiceImpl;
 import com.volcengine.service.visual.IVisualService;
@@ -85,6 +87,15 @@ public class VisualServiceImpl extends BaseServiceImpl implements IVisualService
             throw response.getException();
         }
         return JSON.parseObject(new String(response.getData(),"UTF-8"),VisualHumanSegmentResponse.class);
+    }
+
+    @Override
+    public VisualImageStylizationResponse imageStyle(VisualImageStylizationRequest request) throws Exception {
+        RawResponse response = post(Const.HumanSegment,null,convertNameValuePair(request));
+        if (response.getCode() != SdkError.SUCCESS.getNumber()) {
+            throw response.getException();
+        }
+        return JSON.parseObject(new String(response.getData(),"UTF-8"),VisualImageStylizationResponse.class);
     }
 
     private List<NameValuePair> convertNameValuePair(Object obj)

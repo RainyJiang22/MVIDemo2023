@@ -105,7 +105,22 @@ public class VisualConfig {
                             put(Const.Query,new ArrayList<NameValuePair>(){
                                 {
                                     add(new NameValuePair("Action", Const.HumanSegment));
-                                    add(new NameValuePair("Version", "20220-08-26"));
+                                    add(new NameValuePair("Version", "2022-08-26"));
+                                }
+                            });
+                        }
+                    }
+            ));
+
+            put(Const.CVProcess, new ApiInfo(
+                    new HashMap<String,Object>() {
+                        {
+                            put(Const.Method,"POST");
+                            put(Const.Path,"/");
+                            put(Const.Query,new ArrayList<NameValuePair>(){
+                                {
+                                    add(new NameValuePair("Action", Const.CVProcess));
+                                    add(new NameValuePair("Version", "2022-08-31"));
                                 }
                             });
                         }

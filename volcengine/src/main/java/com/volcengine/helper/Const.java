@@ -73,4 +73,5 @@ public class Const {
     public static final String AllAgeGeneration = "AllAgeGeneration";
     public static final String HairStyle = "HairStyle";
     public static final String HumanSegment = "HumanSegment";
+    public static final String CVProcess = "CVProcess";
 }

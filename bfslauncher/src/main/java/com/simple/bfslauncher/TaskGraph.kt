@@ -45,7 +45,6 @@ class TaskGraph(val context: Context) {
         // 计算入度
         taskGraph.keys.forEach { it ->
             taskGraph[it]?.forEach { itask ->
-
                 indegree[itask] = indegree.getOrElse(itask) { 0 } + 1
             }
         }
